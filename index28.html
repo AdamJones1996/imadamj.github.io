@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Navigation and Sidebar</title>
+<style>
+/* Common Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+a {
+    text-decoration: none;
+}
+
+/* Topbar Styles */
+.topbar {
+    background-color: #282A35;
+    color: #fff;
+    padding: 0px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+.topbar ul {
+    list-style-type: none;
+    margin: auto;
+    padding: 0;
+    display: flex;
+    overflow-y: auto; /* Enable horizontal scrolling for tabs in mobile view */
+}
+.topbar li {
+    margin-right: 0px;
+    padding: 5px 0px;
+}
+.topbar li:last-child {
+    margin-right: 0;
+}
+.topbar a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease, background-color 0.3s ease; /* Added background-color transition */
+    margin: 0px;
+    padding: 10px 10px;
+}
+.topbar a:hover {
+    background-color: #010415; /* Change background color on hover */
+} 
+.topbar .active,
+.topbar .active:hover {
+    background-color: green; /* Change background color for active item and keep it on hover */
+}
+
+.icon-bar {
+    padding: 5px;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 180px;
+    background-color: #E7E9EB;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    padding: 10px;
+    overflow-x: auto;
+}
+.sidebar-item {
+    padding: 10px;
+    color: black;
+    text-decoration: none;
+    display: block;
+}
+.sidebar-item:hover {
+    background-color: #CCCCCC;
+}
+
+/* Content Styles */
+.content {
+    margin-top: 0px; /* Adjusted to make space for the topbar */
+    padding: 0px;
+    margin-left: 270px; /* Adjusted to accommodate the sidebar width */
+}
+</style>
+</head>
+<body>
+
+<!-- Topbar Navigation -->
+<div class="topbar">
+    <div class="icon-bar">
+        <i class="fa-solid fa-bars"></i>
+    </div>
+    <ul>
+        <li><a href="#" class="topbar-item" data-target="grammar">Grammar</a></li>
+        <li><a href="#" class="topbar-item" data-target="vocabulary">Vocabulary</a></li>
+        <li><a href="#" class="topbar-item" data-target="listening">Listening</a></li>
+        <li><a href="#" class="topbar-item" data-target="reading">Reading</a></li>
+        <li><a href="#" class="topbar-item" data-target="exam">Exam</a></li>
+        <li><a href="#" class="topbar-item" data-target="ielts">Ielts</a></li>
+    </ul>
+</div>
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <h3 id="grammar">Grammar</h3>
+    <h4>A1 Beginner</h4>
+    <a href="#" class="sidebar-item">Home</a>
+    <a href="#" class="sidebar-item">About</a>
+    <a href="#" class="sidebar-item">Services</a>
+    <a href="#" class="sidebar-item">Contact</a>
+    <h4>A2 Elementary</h4>
+    <a href="#" class="sidebar-item">Home</a>
+    <a href="#" class="sidebar-item">About</a>
+    <a href="#" class="sidebar-item">Services</a>
+    <a href="#" class="sidebar-item">Contact</a>
+    <h4>B1 Elementary</h4>
+    <a href="#" class="sidebar-item">Home</a>
+    <a href="#" class="sidebar-item">About</a>
+    <a href="#" class="sidebar-item">Services</a>
+    <a href="#" class="sidebar-item">Contact</a>
+    <h4>A1 Beginner</h4>
+    <a href="#" class="sidebar-item">Home</a>
+    <a href="#" class="sidebar-item">About</a>
+    <a href="#" class="sidebar-item">Services</a>
+    <a href="#" class="sidebar-item">Contact</a>
+    <h4>A2 Elementary</h4>
+    <a href="#" class="sidebar-item">Home</a>
+    <a href="#" class="sidebar-item">About</a>
+    <a href="#" class="sidebar-item">Services</a>
+    <a href="#" class="sidebar-item">Contact</a>
+    <h4>B1 Elementary</h4>
+    <a href="#" class="sidebar-item">Home</a>
+    <a href="#" class="sidebar-item">About</a>
+    <a href="#" class="sidebar-item">Services</a>
+    <a href="#" class="sidebar-item">Contact</a>
+</div>
+
+<!-- Main Content Area -->
+<div class="content">
+    <h2>Main Content Area</h2>
+    <p>This is the main content area. You can put your page content here.</p>
+</div>
+
+</body>
+<script src="https://kit.fontawesome.com/ac9d3b1de8.js" crossorigin="anonymous"></script>
+<script>
+// JavaScript to add 'active' class to clicked topbar items
+const topbarItems = document.querySelectorAll('.topbar-item');
+const sidebarItems = document.querySelectorAll('.sidebar-item');
+
+topbarItems.forEach(item => {
+    item.addEventListener('click', function() {
+        const targetId = this.getAttribute('data-target');
+        sidebarItems.forEach(sidebarItem => {
+            sidebarItem.classList.remove('active');
+        });
+        const targetSidebarItem = document.querySelector(`.sidebar-item[href="#${targetId}"]`);
+        if (targetSidebarItem) {
+            targetSidebarItem.classList.add('active');
+        }
+        topbarItems.forEach(item => {
+            item.classList.remove('active');
+        });
+        this.classList.add('active');
+    });
+});
+</script>
+</html>
